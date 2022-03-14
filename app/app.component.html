@@ -1,33 +1,47 @@
-<ngx-charts-area-chart-stacked
-  [view]="view"
-  [scheme]="colorScheme"
-  [legend]="legend"
-  [showXAxisLabel]="showXAxisLabel"
-  [showYAxisLabel]="showYAxisLabel"
-  [xAxis]="xAxis"
-  [yAxis]="yAxis"
-  [xAxisLabel]="xAxisLabel"
-  [yAxisLabel]="yAxisLabel"
-  [timeline]="timeline"
-  [results]="multi"
-  (select)="onSelect($event)"
->
-</ngx-charts-area-chart-stacked>
-
-<button mat-icon-button [matMenuTriggerFor]="menu">
-  <mat-icon> more_vert </mat-icon>
-</button>
-<mat-menu #menu="matMenu">
-  <button mat-menu-item>
-    <mat-icon>dialpad</mat-icon>
-    <span>Redial</span>
-  </button>
-  <button mat-menu-item disabled>
-    <mat-icon>voicemail</mat-icon>
-    <span>Check voice mail</span>
-  </button>
-  <button mat-menu-item>
-    <mat-icon>notifications_off</mat-icon>
-    <span>Disable alerts</span>
-  </button>
-</mat-menu>
+<div class="w3-row">
+  <div class="w3-card w3-col m10" style="height: 50vh">
+    <ngx-charts-area-chart-stacked
+      [scheme]="colorScheme"
+      [legend]="legend"
+      [showXAxisLabel]="showXAxisLabel"
+      [showYAxisLabel]="showYAxisLabel"
+      [xAxis]="xAxis"
+      [yAxis]="yAxis"
+      [legendPosition]="legendPosition"
+      [xAxisLabel]="xAxisLabel"
+      [yAxisLabel]="yAxisLabel"
+      [timeline]="timeline"
+      [results]="multi"
+      [customColors]="customColors"
+      (select)="onSelect($event)"
+    >
+    </ngx-charts-area-chart-stacked>
+  </div>
+  <div class="w3-card w3-col m2" style="height: 50vh ">
+    <button mat-icon-button [matMenuTriggerFor]="aboveMenu" style="left">
+      <mat-icon> more_vert </mat-icon>
+    </button>
+    <mat-menu #aboveMenu="matMenu" yPosition="above">
+      <button mat-menu-item>
+        <mat-icon>dialpad</mat-icon>
+        <span>Redial</span>
+      </button>
+      <button mat-menu-item disabled>
+        <mat-icon>voicemail</mat-icon>
+        <span>Check voice mail</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>notifications_off</mat-icon>
+        <span>Disable alerts</span>
+      </button>
+    </mat-menu>
+  </div>
+</div>
+<div class="w3-card w3-col s8">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef>No.</th>
+      <td mat-cell *matCellDef="let element">{{ element.position }}</td>
+    </ng-container>
+  </table>
+</div>
